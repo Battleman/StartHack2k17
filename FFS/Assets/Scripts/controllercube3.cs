@@ -46,16 +46,15 @@ public class controllercube3 : MonoBehaviour {
            // transform.position = new Vector3(transform.position.x, transform.position.y, 20.0f);
         }
 		else {
-			print ("super");
 			count += new Vector3 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"), 0.0f);
 			while (count.x >= size1) {
-				print ("++");
+				//print ("++");
 				count.x -= size1;
 				transform.position +=  new Vector3 ( size1, 0.0f, 0.0f);
 			}
 
 			while (count.x <= -size1) {
-				print ("--");
+				//print ("--");
 				count.x += size1;
 				transform.position -=  new Vector3 ( size1, 0.0f, 0.0f);
 			}
@@ -71,14 +70,15 @@ public class controllercube3 : MonoBehaviour {
 			}
 
 			if (count.y > 2*size1) {
-				print ("quit high");
+				//print ("quit high");
 				transform.position +=  new Vector3 ( 0.0f, 2*size1, 0.0f);
 				hasChild = false;
 			}
 
 
 			if (count.y < -child.GetComponent<Collider> ().bounds.size.y -2*size1) {
-				print ("quit low");
+				//print ("quit low");
+
 				transform.position -=  new Vector3 ( 0.0f, child.GetComponent<Collider> ().bounds.size.y +2*size1, 0.0f);
 				hasChild = false;
 			}
@@ -88,11 +88,19 @@ public class controllercube3 : MonoBehaviour {
 			Vector3 childSize = child.GetComponent<Collider> ().bounds.size;
 			if (pos.x > childPos.x + currSize.x / 2 + childSize.x / 2) {
 				print ("rate");
+				print (count);
+				print ("size");
+				print (childSize);
+				print (transform.position);
 				hasChild = false;
 			}
 
 			if (pos.x < childPos.x - currSize.x / 2 - childSize.x / 2) {
 				print ("bla");
+				print (count);
+				print ("size");
+				print (childSize);
+				print (transform.position);
 				hasChild = false;
 			}
 
