@@ -144,9 +144,10 @@ public class controllercube3 : MonoBehaviour {
 		}
 	}*/
 	void OnTriggerEnter(Collider col) {
+        print("Wololo");
 		if (isMoving) {
 
-
+            
 
 			//TODO change for bricks of different size and z as x and from dowm
 
