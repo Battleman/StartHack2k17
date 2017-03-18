@@ -16,7 +16,8 @@ public class prefab : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(1))
             {
-                cubePrefabClone = Instantiate(cubePrefab, hit.point, Quaternion.identity) as GameObject;
+                print(cubePrefab);
+                cubePrefabClone = Instantiate(cubePrefab, hit.point + new Vector3(0,0.5f,0), Quaternion.identity) as GameObject;
             }
 
         }
