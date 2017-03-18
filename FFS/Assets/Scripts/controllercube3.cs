@@ -46,6 +46,7 @@ public class controllercube3 : MonoBehaviour {
            // transform.position = new Vector3(transform.position.x, transform.position.y, 20.0f);
         }
 		else {
+			print ("super");
 			count += new Vector3 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"), 0.0f);
 			while (count.x >= size1) {
 				print ("++");
@@ -54,17 +55,30 @@ public class controllercube3 : MonoBehaviour {
 			}
 
 			while (count.x <= -size1) {
+				print ("--");
 				count.x += size1;
 				transform.position -=  new Vector3 ( size1, 0.0f, 0.0f);
 			}
 
+			while (count.z >= size1) {
+				count.z -= size1;
+				transform.position +=  new Vector3 (  0.0f, 0.0f , size1);
+			}
+
+			while (count.z <= -size1) {
+				count.z += size1;
+				transform.position -= new Vector3 (  0.0f, 0.0f , size1);
+			}
+
 			if (count.y > 2*size1) {
+				print ("quit high");
 				transform.position +=  new Vector3 ( 0.0f, 2*size1, 0.0f);
 				hasChild = false;
 			}
 
 
 			if (count.y < -child.GetComponent<Collider> ().bounds.size.y -2*size1) {
+				print ("quit low");
 				transform.position -=  new Vector3 ( 0.0f, child.GetComponent<Collider> ().bounds.size.y +2*size1, 0.0f);
 				hasChild = false;
 			}
@@ -72,11 +86,23 @@ public class controllercube3 : MonoBehaviour {
 			Vector3 childPos = child.transform.position; 
 			Vector3 currSize = GetComponent<Collider> ().bounds.size;
 			Vector3 childSize = child.GetComponent<Collider> ().bounds.size;
-			if (pos.x > childPos.x + childSize.x / 2 + childSize.x / 2) {
+			if (pos.x > childPos.x + currSize.x / 2 + childSize.x / 2) {
+				print ("rate");
 				hasChild = false;
 			}
 
-			if (pos.x < childPos.x - childSize.x / 2 - childSize.x / 2) {
+			if (pos.x < childPos.x - currSize.x / 2 - childSize.x / 2) {
+				print ("bla");
+				hasChild = false;
+			}
+
+			if (pos.z > childPos.z + currSize.z / 2 + childSize.z / 2) {
+				print ("rate");
+				hasChild = false;
+			}
+
+			if (pos.z < childPos.z - currSize.z / 2 - childSize.z / 2) {
+				print ("bla");
 				hasChild = false;
 			}
 		}
@@ -102,14 +128,11 @@ public class controllercube3 : MonoBehaviour {
 			blocked = true;
 			count = new Vector3 (0.0f, 0.0f, 0.0f);
 
-			print ("Mouse moved left");
-			print (col.gameObject.transform.position);
 			Vector3 colPosition = col.gameObject.transform.position;
 			Vector3 colSize = col.bounds.size;
 			Vector3 colRot = col.gameObject.transform.rotation.eulerAngles;
 			Vector3 currSize = GetComponent<Collider> ().bounds.size;
 			Vector3 currPos = transform.position;
-			print (transform.position);
 
 
 			transform.position = colPosition;
