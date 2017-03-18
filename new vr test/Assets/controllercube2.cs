@@ -443,15 +443,35 @@ namespace NewtonVR
 
         void OnTriggerEnter(Collider col)
         {
-            if (IsAttached)
+            child = col.gameObject;
+            if (IsAttached && child.name.Substring(0, 4) == "lego")
             {
 
+                GameObject upperObj;
+                GameObject lowerObj;
+                Collider upperCol;
+                Collider lowerCol;
 
-
+                if (col.gameObject.transform.position.x > GetComponent<GameObject>().transform.position.x)
+                {
+                    upperObj = col.gameObject;
+                    upperCol = col;
+                    lowerObj = GetComponent<GameObject>();
+                    lowerCol = GetComponent<Collider>();
+                }
+                else
+                {
+                    upperObj = GetComponent<GameObject>();
+                    upperCol = GetComponent<Collider>();
+                    lowerObj = col.gameObject;
+                    lowerCol = col;
+                }
                 //TODO change for bricks of different size and z as x and from dowm
 
-                child = col.gameObject;
+              
                 hasChild = true;
+
+                
 
 
                 blocked = true;
@@ -459,26 +479,26 @@ namespace NewtonVR
 
                 print("Mouse moved left");
                 print(col.gameObject.transform.position);
-                Vector3 colPosition = col.gameObject.transform.position;
-                Vector3 colSize = col.bounds.size;
-                Vector3 currSize = GetComponent<Collider>().bounds.size;
-                Vector3 currPos = transform.position;
+                Vector3 lowerPosition = lowerObj.transform.position;
+                Vector3 lowerSize = lowerCol.bounds.size;
+                Vector3 upperSize = upperCol.bounds.size;
+                Vector3 upperPos = upperObj.transform.position;
                 print(transform.position);
 
 
-                transform.position = colPosition + new Vector3((currSize.x - colSize.x) / 2, colSize.y, 0.0f);
+                transform.position = lowerPosition + new Vector3((upperSize.x - lowerSize.x) / 2, lowerSize.y, 0.0f);
 
-                if (colPosition.x - colSize.x / 4 > currPos.x)
+                if (lowerPosition.x - lowerSize.x / 4 > upperPos.x)
                 {
                     print("yes");
-                    print(colSize.x / 4);
-                    print(currPos.x);
+                    print(lowerSize.x / 4);
+                    print(upperPos.x);
 
-                    transform.position += new Vector3(-currSize.x + 1, 0.0f, 0.0f);
+                    transform.position += new Vector3(-upperSize.x + 1, 0.0f, 0.0f);
                 }
-                else if (colPosition.x - colSize.x / 4 < transform.position.x)
+                else if (lowerPosition.x - lowerSize.x / 4 < transform.position.x)
                 {
-                    transform.position += new Vector3(colSize.x - 1, 0.0f, 0.0f);
+                    transform.position += new Vector3(lowerSize.x - 1, 0.0f, 0.0f);
                     print("no");
 
                 }
