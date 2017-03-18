@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: e50c589da3ee3e34bad0d05c7c941698
-timeCreated: 1489807609
+timeCreated: 1489864900
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cubePrefab: {fileID: 1624239205286662, guid: 843c2636b4bf1e24599fe3d94ea3f791,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
