@@ -54,20 +54,30 @@ public class controllercube3 : MonoBehaviour {
 		else {
 			count += new Vector3 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"), 0.0f);
 			while (count.x >= size1) {
+				print ("++");
 				count.x -= size1;
 				transform.position +=  new Vector3 ( 1.0f, 0.0f, 0.0f);
+				transform.position +=  new Vector3 ( size1, 0.0f, 0.0f);
 			}
 
 			while (count.x <= -1) {
 				count.x += 1f;
 				transform.position -=  new Vector3 ( 1.0f, 0.0f, 0.0f);
+			while (count.x <= -size1) {
+				print("--");
+				count.x += size1;
+				transform.position -=  new Vector3 ( size1, 0.0f, 0.0f);
 			}
 			if (count.y > 2) {
 				transform.position +=  new Vector3 ( 0.0f, 2.0f, 0.0f);
+			if (count.y > 2*size1) {
+				transform.position +=  new Vector3 ( 0.0f, 2*size1, 0.0f);
 				hasChild = false;
 			}
 			if (count.y < -child.GetComponent<Collider> ().bounds.size.y -2) {
 				transform.position -=  new Vector3 ( 0.0f, 3.0f, 0.0f);
+			if (count.y < -child.GetComponent<Collider> ().bounds.size.y -2*size1) {
+				transform.position -=  new Vector3 ( 0.0f, child.GetComponent<Collider> ().bounds.size.y +2*size1, 0.0f);
 				hasChild = false;
 			}
 			Vector3 pos = transform.position;
@@ -198,6 +208,8 @@ public class controllercube3 : MonoBehaviour {
 		if (isMoving) {
 			print (this);
 			print (col);
+			if (isMoving && !hasChild) {
+
 			while (col.gameObject.transform.parent != null) {
 				col = col.gameObject.transform.parent.GetComponent<Collider> ();
 			}
@@ -231,6 +243,7 @@ public class controllercube3 : MonoBehaviour {
 			Vector3 addRot = Vector3.RotateTowards (,colRot, 4f, 1.0f);
 			addRot.Normalize();
             print(addRot);*/
+				//if ()
 			transform.position += new Vector3 (0.0f, 1.2f, 0.0f);
 			transform.rotation = col.gameObject.transform.rotation;
 
