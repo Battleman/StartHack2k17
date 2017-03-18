@@ -45,7 +45,7 @@ public class controllercube3 : MonoBehaviour {
 		isMoving = false;
 	}
 
-	void OnMouseDrag() {
+	public void OnMouseDrag() {
 		if (!hasChild)
         {
             transform.position = transform.position + new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
