@@ -143,7 +143,7 @@ public class controllercube3 : MonoBehaviour {
 
 		}
 	}*/
-	void OnTriggerEnter(Collider col) {
+	/*void OnTriggerEnter(Collider col) {
         print("Wololo");
 		if (isMoving) {
 
@@ -175,7 +175,7 @@ public class controllercube3 : MonoBehaviour {
 
 			Vector3 addRot = Vector3.RotateTowards (,colRot, 4f, 1.0f);
 			addRot.Normalize();
-            print(addRot);*/
+            print(addRot);*
 			transform.position += new Vector3(0.0f, 1f, 0.0f);
 			transform.rotation = col.gameObject.transform.rotation;
 
@@ -189,8 +189,62 @@ public class controllercube3 : MonoBehaviour {
 				transform.position += new Vector3 (colSize.x - 1, 0.0f, 0.0f);
 				print ("no");
 
-			}*/
+			}*
 
 		}
-	}
+	}*/
+		void OnTriggerEnter(Collider col) {
+			print("Wololo");
+		if (isMoving) {
+			print (this);
+			print (col);
+			while (col.gameObject.transform.parent != null) {
+				col = col.gameObject.transform.parent.GetComponent<Collider> ();
+			}
+
+
+
+			//TODO change for bricks of different size and z as x and from dowm
+
+			child = col.gameObject;
+			hasChild = true;
+
+
+			blocked = true;
+			count = new Vector3 (0.0f, 0.0f, 0.0f);
+
+			print ("Mouse moved left");
+			print (col.gameObject.transform.position);
+			Vector3 colPosition = col.gameObject.transform.position;
+			Vector3 colSize = col.bounds.size;
+			Vector3 colRot = col.gameObject.transform.rotation.eulerAngles;
+			Vector3 currSize = GetComponent<Collider> ().bounds.size;
+			Vector3 currPos = transform.position;
+			print (transform.position);
+
+
+			transform.position = colPosition;
+			//transform.rotation = col.gameObject.transform.rotation;
+
+			/*transform.position += new Vector3 ((currSize.x - colSize.x) / 2, 0.0f, 0.0f);
+
+			Vector3 addRot = Vector3.RotateTowards (,colRot, 4f, 1.0f);
+			addRot.Normalize();
+            print(addRot);*/
+			transform.position += new Vector3 (0.0f, 1.2f, 0.0f);
+			transform.rotation = col.gameObject.transform.rotation;
+
+			/*if (colPosition.x - colSize.x / 4 > currPos.x) {
+				print ("yes");
+				print (colSize.x / 4);
+				print (currPos.x);
+
+				transform.position += new Vector3 (-currSize.x + 1, 0.0f, 0.0f);
+			} else if (colPosition.x - colSize.x / 4 < transform.position.x) {
+				transform.position += new Vector3 (colSize.x - 1, 0.0f, 0.0f);
+				print ("no");
+
+			}*/
+		}
+		}
 }
