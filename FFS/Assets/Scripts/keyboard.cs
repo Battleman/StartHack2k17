@@ -27,20 +27,7 @@ public class keyboard : MonoBehaviour
     void Start()
     {
 
-        test = gameObject;
-        goal_r = 0.0f;
-        goal_g = 0.0f;
-        goal_b = 0.0f;
-
-        curr_r = 0.0f;
-        curr_g = 0.0f;
-        curr_b = 0.0f;
-
-        blue = 0;
-        red = 0;
-        green = 0;
-        LogitechGSDK.LogiLedInit();
-        LogitechGSDK.LogiLedSaveCurrentLighting();
+        
         
 
         
@@ -130,7 +117,7 @@ public class keyboard : MonoBehaviour
 			LogitechGSDK.LogiLedStopEffects();
 		}
 
-        interpolate_color(ref curr_r, ref curr_g, ref curr_b, ref goal_r, ref goal_g, ref goal_b);
+    //    interpolate_color(ref curr_r, ref curr_g, ref curr_b, ref goal_r, ref goal_g, ref goal_b);
 
         Color whateverColor = new Color(curr_r, curr_g, curr_b, 1);
         MeshRenderer gameObjectRenderer = test.GetComponent<MeshRenderer>();
@@ -147,51 +134,5 @@ public class keyboard : MonoBehaviour
         LogitechGSDK.LogiLedShutdown();
     }
 
-    static void interpolate_color(ref float curr_r, ref float curr_g, ref float curr_b,
-                                   ref float goal_r, ref float goal_g, ref float goal_b)
-    {
-
-        float diff_r = goal_r - curr_r;
-        float diff_g = goal_g - curr_g;
-        float diff_b = goal_b - curr_b;
-
-        if (Mathf.Abs(diff_r) < INTERPOLATE_STEP)
-        {
-            curr_r = goal_r;
-        }
-        else if (diff_r > 0.0f)
-        {
-            curr_r += INTERPOLATE_STEP;
-        }
-        else
-        {
-            curr_r -= INTERPOLATE_STEP;
-        }
-
-        if (Mathf.Abs(diff_g) < INTERPOLATE_STEP)
-        {
-            curr_g = goal_g;
-        }
-        else if (diff_g > 0.0f)
-        {
-            curr_g += INTERPOLATE_STEP;
-        }
-        else
-        {
-            curr_g -= INTERPOLATE_STEP;
-        }
-
-        if (Mathf.Abs(diff_b) < INTERPOLATE_STEP)
-        {
-            curr_b = goal_b;
-        }
-        else if (diff_b > 0.0f)
-        {
-            curr_b += INTERPOLATE_STEP;
-        }
-        else
-        {
-            curr_b -= INTERPOLATE_STEP;
-        }
-    }
+    
 }

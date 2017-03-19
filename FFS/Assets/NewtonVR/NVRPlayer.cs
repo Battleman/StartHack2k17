@@ -9,6 +9,9 @@ namespace NewtonVR
 {
     public class NVRPlayer : MonoBehaviour
     {
+        public Vector2 LeftJoystick;
+
+
         public const decimal NewtonVRVersion = 1.191m;
         public const float NewtonVRExpectedDeltaTime = 0.0111f;
 

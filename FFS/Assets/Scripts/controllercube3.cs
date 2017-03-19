@@ -9,6 +9,29 @@ namespace NewtonVR
 {
     public class controllercube3 : NVRInteractable
     {
+        //   ---- MODEL COLOURS ----
+        const float INTERPOLATE_STEP = 0.08f;
+        GameObject test;
+        System.Random rand = new System.Random();
+
+        float goal_r;
+        float goal_g;
+        float goal_b;
+
+        float curr_r;
+        float curr_g;
+        float curr_b;
+
+        //   ---- KEYBOARD COLOURS -----
+        int red, blue, green;
+        enum colors { R, G, B };
+        colors curr_color = colors.R;
+
+
+
+
+
+
 
         private const float MaxVelocityChange = 10f;
         private const float MaxAngularVelocityChange = 20f;
@@ -62,6 +85,28 @@ namespace NewtonVR
         protected override void Start()
         {
             base.Start();
+
+            test = gameObject;
+            goal_r = 0.0f;
+            goal_g = 0.0f;
+            goal_b = 0.0f;
+
+            curr_r = 0.0f;
+            curr_g = 0.0f;
+            curr_b = 0.0f;
+
+            blue = 0;
+            red = 0;
+            green = 0;
+
+            Color whateverColor = new Color(curr_r, curr_g, curr_b, 1);
+            MeshRenderer gameObjectRenderer = test.GetComponent<MeshRenderer>();
+            Material newMaterial = new Material(Shader.Find("Standard"));
+
+            newMaterial.color = whateverColor;
+            gameObjectRenderer.material = newMaterial;
+
+
             blocked = false;
             hasChild = false;
             hasParent = false;
@@ -75,17 +120,26 @@ namespace NewtonVR
             this.Rigidbody.maxAngularVelocity = 100f;
         }
 
-        protected virtual void FixedUpdate()
+        void FixedUpdate()
         {
-            if (IsAttached == true)
-            {
-                bool dropped = CheckForDrop();
+            //if (IsAttached == true)
+            // {
+            bool dropped = true;// CheckForDrop();
 
                 if (dropped == false)
                 {
                     UpdateVelocities();
                 }
-            }
+         
+                LogiInit.interpolate_color(ref curr_r, ref curr_g, ref curr_b);
+
+                Color whateverColor = new Color(curr_r, curr_g, curr_b, 1);
+                MeshRenderer gameObjectRenderer = test.GetComponent<MeshRenderer>();
+                Material newMaterial = new Material(Shader.Find("Standard"));
+
+                newMaterial.color = whateverColor;
+                gameObjectRenderer.material = newMaterial;
+      //      }
 
             AddExternalVelocities();
         }
