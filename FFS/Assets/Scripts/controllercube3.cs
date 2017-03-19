@@ -59,7 +59,7 @@ namespace NewtonVR
 
         //public bool clicked = false;
         // Use this for initialization
-        void Start()
+        protected override void Start()
         {
             base.Start();
             blocked = false;
