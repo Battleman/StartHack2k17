@@ -544,9 +544,6 @@ namespace NewtonVR
         {
            
 
-
-
-
             if (IsAttached && !hasChild)
             {
                 GetComponent<Rigidbody>().isKinematic = true;

@@ -64,9 +64,9 @@ public class ColorUpdater : MonoBehaviour {
     {
         if (go.GetComponent<Renderer>())
         {
-            Material m = new Material(new Shader());
-            m.color = c;
-            go.GetComponent<Renderer>().material = m;
+          //  Material m = new Material(new Shader());
+        //    m.color = c;
+       //     go.GetComponent<Renderer>().material = m;
         }
         for (int i = 0; i < go.transform.childCount; i++)
         {
