@@ -8,7 +8,7 @@ public class keyboard : MonoBehaviour
     //   ---- MODEL COLOURS ----
     const float INTERPOLATE_STEP = 0.08f;
     GameObject test;
-    System.Random rand = new System.Random();
+System.Random rand = new System.Random();
 
     float goal_r;
     float goal_g;
@@ -26,8 +26,19 @@ public class keyboard : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		print ("keyboard start is called");
+		test = gameObject;
+		goal_r = 0.0f;
+		goal_g = 0.0f;
+		goal_b = 0.0f;
 
-        
+		curr_r = 0.0f;
+		curr_g = 0.0f;
+		curr_b = 0.0f;
+
+		blue = 0;
+		red = 0;
+		green = 0;
         
 
         
@@ -36,9 +47,9 @@ public class keyboard : MonoBehaviour
 	// Update is called once per frame
     void Update()
     {
-
+		print ("Update before");
         LogitechGSDK.LogiLedSetLighting(red, green, blue);
-
+		print ("Update after");
         if (Input.GetKey(KeyCode.R))
         {
             curr_color = colors.R;

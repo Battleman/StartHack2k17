@@ -6,18 +6,15 @@ public class LogiInit : MonoBehaviour
 {
     const float INTERPOLATE_STEP = 0.08f;
 
-    int red;
-    int green;
-    int blue;
+    int red = 0;
+    int green = 0;
+    int blue = 0;
 
-    private static float goal_r;
-    private static float goal_g;
-    private static float goal_b;
+    private static float goal_r = 0.0f;
+	private static float goal_g = 0.0f;
+	private static float goal_b = 0.0f;
 
-    float curr_r;
-    float curr_g;
-    float curr_b;
-
+   
     enum colors { R, G, B };
     colors curr_color = colors.R;
 
@@ -41,19 +38,19 @@ public class LogiInit : MonoBehaviour
         goal_r = 0.0f;
         goal_g = 0.0f;
         goal_b = 0.0f;
-
-        curr_r = 0.0f;
-        curr_g = 0.0f;
-        curr_b = 0.0f;
+		print ("Did i change some color ?");
+       
         LogitechGSDK.LogiLedInit();
         LogitechGSDK.LogiLedSaveCurrentLighting();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
+		print ("And did I update once ?");
 
         LogitechGSDK.LogiLedSetLighting(red, green, blue);
+		print ("And did I update a second time ?");
 
         if (Input.GetKey(KeyCode.R))
         {
