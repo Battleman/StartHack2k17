@@ -64,16 +64,12 @@ public class ColorUpdater : MonoBehaviour {
 
     static void ChangeMaterial(GameObject go, Color c)
     {
-		if (go.GetComponent<Renderer>()!=null)
-		{
-			print ("test");
-			UnityEngine.Shader s =   UnityEngine.Shader.Find("Custom/SuperShader");
-			print (s);
-			Material m = new Material(s);
-			print (m);
-			m.color = c;
-			go.GetComponent<Renderer>().material = m;
-		}
+        if (go.GetComponent<Renderer>())
+        {
+          //  Material m = new Material(new Shader());
+        //    m.color = c;
+       //     go.GetComponent<Renderer>().material = m;
+        }
         for (int i = 0; i < go.transform.childCount; i++)
         {
             ChangeMaterial(go.transform.GetChild(i).gameObject, c);
