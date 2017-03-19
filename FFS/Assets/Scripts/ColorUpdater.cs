@@ -23,9 +23,6 @@ public class ColorUpdater : MonoBehaviour {
     colors curr_color = colors.R;
 
 
-    
-
-
 
     // Use this for initialization
     void Start () {
@@ -46,12 +43,7 @@ public class ColorUpdater : MonoBehaviour {
 
         ChangeMaterial(test, new Color(curr_r, curr_g, curr_b));
 
-
-
     }
-
-    
-
 
     // Update is called once per frame
     void Update () {

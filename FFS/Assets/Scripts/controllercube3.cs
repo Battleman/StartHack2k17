@@ -28,11 +28,6 @@ namespace NewtonVR
         colors curr_color = colors.R;
 
 
-
-
-
-
-
         private const float MaxVelocityChange = 10f;
         private const float MaxAngularVelocityChange = 20f;
         private const float VelocityMagic = 6000f;
@@ -113,6 +108,21 @@ namespace NewtonVR
             isMoving = false;
         }
 
+
+        static void ChangeMaterial(GameObject go, Color c)
+        {
+            if (go.GetComponent<Renderer>())
+            {
+                //  Material m = new Material(new Shader());
+                //    m.color = c;
+                //     go.GetComponent<Renderer>().material = m;
+            }
+            for (int i = 0; i < go.transform.childCount; i++)
+            {
+                ChangeMaterial(go.transform.GetChild(i).gameObject, c);
+            }
+        }
+
         protected override void Awake()
         {
             base.Awake();
@@ -130,16 +140,15 @@ namespace NewtonVR
                 {
                     UpdateVelocities();
                 }
-         
+
+                if (IsAttached)
+            {
                 LogiInit.interpolate_color(ref curr_r, ref curr_g, ref curr_b);
-
-                Color whateverColor = new Color(curr_r, curr_g, curr_b, 1);
-                MeshRenderer gameObjectRenderer = test.GetComponent<MeshRenderer>();
-                Material newMaterial = new Material(Shader.Find("Standard"));
-
-                newMaterial.color = whateverColor;
-                gameObjectRenderer.material = newMaterial;
-      //      }
+                ChangeMaterial(gameObject, new Color(curr_r, curr_g, curr_b));
+            }
+         
+                
+            //      }
 
             AddExternalVelocities();
         }
